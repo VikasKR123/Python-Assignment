@@ -80,3 +80,7 @@ def move_copy_file():
 </pre>
 It retrieves the source (src) and destination (dest) from the form. Depending on the selected action (move or copy), it either copies the file using s3.copy_object or moves it by copying and then deleting the source file.
 Success or failure messages are flashed, and the user is redirected to the homepage
+
+![Screenshot from 2024-09-09 18-58-18](https://github.com/user-attachments/assets/251f062c-41d6-4c6f-96c0-f3358c8866f0)
+
+
