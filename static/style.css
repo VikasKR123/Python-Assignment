@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: aqua;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}

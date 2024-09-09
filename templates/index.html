@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 File Manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">S3 File Manager</h1>
+
+        <!-- Flash messages -->
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+       {% endfor %}
+
+    <h3 class="mt-4">List of Files and Folders</h3>
+        <ul class="list-group">
+          {% for item in contents %}
+            <li class="list-group-item">
+              {{ item.Key }}
+              <form action="/delete" method="POST" style="display:inline;">
+                <input type="hidden" name="key" value="{{ item.Key }}">
+                <button class="btn btn-danger btn-sm float-right">Delete</button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <h3 class="mt-4">Create Folder</h3>
+        <form action="/create-folder" method="POST">
+            <div class="form-group">
+                <input type="text" name="folder_name" class="form-control" placeholder="Enter folder name">
+            </div>
+            <button class="btn btn-primary">Create Folder</button>
+        </form>
+
+        <h3 class="mt-4">Upload File</h3>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="folder">Select Folder:</label>
+                <select name="folder" class="form-control">
+                    <option value="">Root</option>
+                    {% for folder in folders %}
+                        <option value="{{ folder }}">{{ folder }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="file" name="file" class="form-control">
+            </div>
+            <button class="btn btn-primary">Upload File</button>
+        </form>
+
+        <h3 class="mt-4">Move/Copy File</h3>
+        <form action="/move-copy" method="POST">
+            <div class="form-group">
+                <input type="text" name="src" class="form-control" placeholder="Source file path">
+            </div>
+            <div class="form-group">
+                <input type="text" name="dest" class="form-control" placeholder="Destination file path">
+            </div>
+            <div class="form-group">
+                <select name="action" class="form-control">
+                    <option value="move">Move</option>
+                    <option value="copy">Copy</option>
+                </select>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
