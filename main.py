@@ -4,8 +4,8 @@ import boto3
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-AWS_ACCESS_KEY = 'AKIARYEUCQKA364NBO7S'
-AWS_SECRET_ACCESS_KEY = '7edkWOiU7MFXRai+NjkrL6blxVyG4MLxRc7ASXLA'
+AWS_ACCESS_KEY = ''
+AWS_SECRET_ACCESS_KEY = ''
 REGION = 'eu-north-1'
 S3_BUCKET = 'vikaskarbail'
 
